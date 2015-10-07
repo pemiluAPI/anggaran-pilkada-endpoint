@@ -8,7 +8,7 @@ module Pemilu
       desc "Return all wilayah"
       get do
         {
-          result: Wilayah.apiall(params)
+          results: Wilayah.apiall(params)
         }
       end
     end
@@ -17,7 +17,7 @@ module Pemilu
       desc "Return all anggaran"
       get do
         {
-          result: Anggaran.apiall(params)
+          results: Anggaran.apiall(params)
         }
       end
     end
