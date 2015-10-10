@@ -4,20 +4,24 @@ class Wilayah < ActiveRecord::Base
   validates :nama,
   					presence: true
 
+  scope :by_id, lambda{ |id| where("id = ?", id) unless id.nil? }
+
   def self.apiall(data = {})
-    wilayah          = self.all
+    wilayah          = self.by_id(data[:id])
     paginate_wilayah = wilayah.limit(setlimit(data[:limit])).offset(data[:offset])
 
     return {
-      wilayah: 	paginate_wilayah.map{|value|
-                  {
-                  	id: value.id,
-                  	nama: value.nama
-                  }
-              	},
+      wilayah: paginate_wilayah.map{|value| value.construct},
       count: paginate_wilayah.count,
       total: wilayah.count
 		}
+  end
+
+  def construct
+    return {
+      id: id,
+      nama: nama
+    }
   end
 
 protected
