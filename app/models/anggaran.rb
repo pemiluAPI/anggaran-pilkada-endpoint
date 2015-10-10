@@ -21,7 +21,7 @@ class Anggaran < ActiveRecord::Base
   def construct
     return {
       id: id,
-      wilayah: (wilayah.construct if wilayah),
+      wilayah: handle(wilayah),
       diajukan: diajukan,
       disetujui: disetujui,
       digunakan: digunakan,
@@ -34,4 +34,9 @@ protected
   def self.setlimit(limit)
     limit = (limit.to_i == 0 || limit.empty?) ? 1000 : limit
   end
+
+  def handle(obj)
+    obj.present? ? obj.construct : {}
+  end
+
 end
