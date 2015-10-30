@@ -22,11 +22,13 @@ class Anggaran < ActiveRecord::Base
     return {
       id: id,
       wilayah: handle(wilayah),
+      tanggal: (tanggal.strftime("%Y-%d-%m") rescue ""),
       diajukan: diajukan,
       disetujui: disetujui,
       digunakan: digunakan,
       no_surat_nphd: no_surat_nphd,
-      dokumen_nphd: dokumen_nphd
+      dokumen_nphd: dokumen_nphd,
+      parpol_pendukung: parpol_pendukung
     }
   end
 

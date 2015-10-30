@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007065538) do
+ActiveRecord::Schema.define(version: 20151030092243) do
 
   create_table "anggarans", force: true do |t|
     t.integer  "wilayah_id"
-    t.float    "diajukan",      limit: 24
-    t.float    "disetujui",     limit: 24
-    t.float    "digunakan",     limit: 24
+    t.date     "tanggal"
+    t.float    "diajukan",         limit: 24
+    t.float    "disetujui",        limit: 24
+    t.float    "digunakan",        limit: 24
     t.string   "no_surat_nphd"
     t.string   "dokumen_nphd"
+    t.string   "parpol_pendukung"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
